@@ -1,0 +1,32 @@
+﻿@page "/checklogin"
+@using Skunkworks.Shared
+@using SomeService;
+@inject HttpClient Http
+
+<PageTitle>Check Login</PageTitle>
+
+<h1>Check Roles</h1>
+
+<p role="status">Current Email: <FluentBadge Appearance="Appearance.Neutral">@loggedInUser?.Email</FluentBadge></p>
+<p role="status">Current Roles: <FluentBadge Appearance="Appearance.Neutral">@loggedInUser?.Roles.FirstOrDefault()</FluentBadge></p>
+
+<FluentButton Appearance="Appearance.Accent" @onclick="IncrementCount">Click me</FluentButton>
+
+@code {
+    private int currentCount = 0;
+    private LoggedInUser loggedInUser = new();
+
+    private async Task IncrementCount()
+    {
+        try
+        {
+            loggedInUser = (await Http.GetFromJsonAsync<LoggedInUser>("User"));
+
+        }
+        catch (Exception ex)
+        {
+            _ = ex;
+        }
+
+    }
+}

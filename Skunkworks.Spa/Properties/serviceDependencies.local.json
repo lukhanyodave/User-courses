@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "identityapp1": {
+      "connectionInfo": "App registration: IHS_Skunkworks_SPA_V2, Tenant: DFX Organization (dfxorg.onmicrosoft.com - AAD B2C)",
+      "secretStore": null,
+      "type": "identityapp.secretStore",
+      "connectionId": "AzureAD:ClientSecret"
+    }
+  }
+}
