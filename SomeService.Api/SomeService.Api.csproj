@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-SomeService.Api-9c73edda-b401-4443-8c92-0f6655e7097b</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.6" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.6" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="3.10.0" />
+    <PackageReference Include="Microsoft.Identity.Web.DownstreamApi" Version="3.10.0" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="3.10.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+   <ItemGroup>
+    <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.3.1" />
+  </ItemGroup>
+  <ItemGroup>
+  <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.5.0" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.6" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.6" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.6" />
+</ItemGroup>  
+<ItemGroup>
+    <ProjectReference Include="..\Skunkworks.Shared\Skunkworks.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AzAuth.ServiceDefaults\AzAuth.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+</Project>
