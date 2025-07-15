@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web.Resource;
-
+using Skunkworks.Domain.Entities;
 using Skunkworks.Shared;
 
 using SomeService.Api.Data;

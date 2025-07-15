@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
+using Skunkworks.Infrastructure;
 
 using SomeService.Api.Data;
 
@@ -12,6 +13,10 @@ builder.AddSqlServerDbContext<DemoDbContext>(connectionName: "demo-backend-db");
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+builder.Services
+   // .AddApplication()
+  //  .AddPresentation()
+    .AddInfrastructure(builder.Configuration);
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
