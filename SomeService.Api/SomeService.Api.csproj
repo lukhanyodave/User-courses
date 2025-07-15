@@ -35,6 +35,8 @@
   <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.6" />
 </ItemGroup>  
 <ItemGroup>
+    <ProjectReference Include="..\Skunkworks.Application\Skunkworks.Application.csproj" />
+    <ProjectReference Include="..\Skunkworks.Infrastructure\Skunkworks.Infrastructure.csproj" />
     <ProjectReference Include="..\Skunkworks.Shared\Skunkworks.Shared.csproj" />
   </ItemGroup>
 
