@@ -1,0 +1,147 @@
+﻿@page "/studentAdmin"
+@using Skunkworks.Domain
+@using Skunkworks.Domain.Entities
+
+<FluentCard Width="800px" Height="900px">
+    @if(student is null)
+    {
+        <p><em>Loading student ...</em></p>
+    }
+    else
+    {
+        <h2>Student Profile </h2>
+        @if(student.StudentProfile is not null)
+        {
+            <div class="form-group row">
+                <FluentTextField Label="Enter your Address" Placeholder="Type here..." @bind-Value="student.StudentProfile.Address" />
+
+                <FluentTextField Label="Enter your Phonenumber" Placeholder="Type here..." @bind-Value="student.StudentProfile.Contact" />
+            </div>
+        }
+       
+
+        <h2>Student Course </h2>
+        @if (student.Courses is not null)
+        {
+            @foreach (var item in student.Courses)
+            {
+                <FluentTextField Label="Enter your Address" Placeholder="Type here..." @bind-Value="item.CourseName" />
+                //View modules by courseId
+            }
+                
+           
+
+            @* <div class="form-group row">
+                <FluentTextField Label="Enter your Address" Placeholder="Type here..." @bind-Value="student.StudentProfile.Address" />
+
+                <FluentTextField Label="Enter your Phonenumber" Placeholder="Type here..." @bind-Value="student.StudentProfile.Contact" />
+            </div> *@
+        }
+
+        <FluentButton Appearance="@Appearance.Accent">Update Profile </FluentButton>
+    }
+    <br />
+    <h2>Register Courses </h2>
+    
+    <br />
+    @if (courses is not null)
+    {
+        <FluentSelect TOption="Course" Label="Select Course" Width="50%;">
+            <FluentOption Value="null" Selected="@(SelectedCourse == Guid.Empty)" OnSelect="(val) => SelectedCourse = Guid.Empty">--- Select ---</FluentOption>
+            @foreach (var item in courses)
+            {
+                <FluentOption TOption="Course" Value="@item.Id.ToString()" Selected="@(SelectedCourse == item.Id)" OnSelect="(val) => SelectedCourse = item.Id">@item.CourseName</FluentOption>
+            }
+        </FluentSelect>
+    }
+    else
+    {
+        <p><em>Loading...</em></p>
+    }
+
+
+    <p>Selected Value: @SelectedCourse</p>
+    <br />
+    <h2> Course Modules</h2>
+
+    @if (studentModules != null)
+    {
+        <FluentDataGrid Id="usermodulegrid" Items="@studentModules.AsQueryable()" GridTemplateColumns="1fr 1fr 1fr 2fr" TGridItem=Module>
+            <PropertyColumn Title="Name" Property="@(c => c!.Name)" Sortable="true" Align="Align.Start" />
+            <PropertyColumn Title="Grade. (C)" Property="@(c => c!.Grade)" Sortable="true" Align="Align.Center" />
+            <PropertyColumn Title="IsCompleted" Property="@(c => c!.IsCompleted)" Sortable="true" Align="Align.Center" />
+            <PropertyColumn Title="Summary" Property="@(c => c!.SequenceNumber)" Sortable="true" Align="Align.End" />
+           
+        </FluentDataGrid>
+    }
+    else
+    {
+        <p><em>Loading...</em></p>
+    }
+    <FluentButton Appearance="@Appearance.Accent" OnClick="@RegisterCourse">Register</FluentButton>
+   
+   
+</FluentCard>
+
+@code {
+    private List<Module>? studentModules = new List<Module>
+    {
+      new Module{ Id= Guid.NewGuid(),Name = "Science",Description ="Physcical science ",IsCompleted = false,Grade=76 } ,
+      new Module{ Id= Guid.NewGuid(),Name = "Maths",Description ="Maths science ",IsCompleted = true,Grade=66 },
+      new Module{ Id= Guid.NewGuid(),Name = "Descretion",Description ="Descretion science ",IsCompleted = false,Grade=55 }
+    };
+    // IQueryable<Module> queryastudentModules = studentModules.AsQueryable();
+    private List<Course>? courses = new List<Course>
+    {
+        new Course{Id= Guid.NewGuid(),CourseName ="System design ",PreRequisites = "Design"},
+        new Course{Id= Guid.NewGuid(),CourseName ="System Architect ",PreRequisites = "Architect"},
+        new Course{Id= Guid.NewGuid(),CourseName ="System Analysis ",PreRequisites = "Analysis"},
+    };
+    private Student? student { get; set; }
+    private string Address { get; set; } = string.Empty;
+    private string Phonenumber { get; set; } = string.Empty;
+    private Guid SelectedCourse { get; set; }
+
+    // Model for the dynamic list
+    public class SelectItem
+    {
+        public string Value { get; set; }
+        public string Label { get; set; }
+    }
+
+    // List of items to populate the select dropdown
+    private List<SelectItem> Items = new List<SelectItem>
+    {
+        new SelectItem { Value = "1", Label = "Option 1" },
+        new SelectItem { Value = "2", Label = "Option 2" },
+        new SelectItem { Value = "3", Label = "Option 3" }
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+
+        // artist = await repository.GetByIdWithConcerts(ItemId);
+        // concerts = artist?.Concerts?.AsQueryable() ?? null;
+    }
+
+    private async Task RegisterCourse()
+    {
+
+    }
+
+    private async Task UpdateProfile()
+    {
+
+    }
+    //Students can mark modules as completed.
+    private async Task UpdateModule()
+    {
+        
+    }
+
+}

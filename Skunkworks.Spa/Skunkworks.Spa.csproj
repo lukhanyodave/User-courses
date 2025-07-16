@@ -17,6 +17,7 @@
    
 
   <ItemGroup>
+    <ProjectReference Include="..\Skunkworks.Domain\Skunkworks.Domain.csproj" />
     <ProjectReference Include="..\Skunkworks.Shared\Skunkworks.Shared.csproj" />
   </ItemGroup>
 
